@@ -18,9 +18,15 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 # this is needed for the menu and to quit
 from PyQt5.QtWidgets import QAction, qApp
 
+# local libraries
+# from name-folder import name-module
+from TabGui.tab_gui import TabbedGui
+
 
 class Embedded_Visualization_Tool(QMainWindow):
-
+    '''The top level file for the application window,
+    housing the function that calls to render the application.
+    '''
     def __init__(self):
 
         # grabbing the attribute
@@ -32,6 +38,10 @@ class Embedded_Visualization_Tool(QMainWindow):
 
         # set up menu bar
         self.MenuBarSetting()
+
+        # add tab widget
+        self.tab_gui_widget = TabbedGui(self)
+        self.setCentralWidget(self.tab_gui_widget)
 
         # render this window
         self.show()
