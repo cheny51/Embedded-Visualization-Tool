@@ -16,6 +16,9 @@ from PyQt5.QtWidgets import QGridLayout, QLabel, QPushButton, QLineEdit
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 
+from FileIO.FileIO_Helper_Lib import fileio_tab_select_folder_pushbutton_clicked
+from FileIO.FileIO_Helper_Lib import fileio_import_files_from_folder_dialog
+
 class FiloIOTab(QWidget):
     '''This class houses all the set widgets used in the
     fileio tab.
@@ -40,13 +43,17 @@ class FiloIOTab(QWidget):
         self.fileio_tab_import_layout_grid = QGridLayout()
 
         # File select button
-        self.fileio_tab_select_file_pushbutton = QPushButton('Select Folder Here')
+        self.fileio_tab_select_folder_pushbutton = QPushButton('Select Folder Here')
 
         # File selected directory display box, for display only
-        self.fileio_tab_select_file_lineedit = QLineEdit('')
-        self.fileio_tab_select_file_lineedit.setReadOnly(True)
+        self.fileio_tab_select_folder_lineedit = QLineEdit('')
+        self.fileio_tab_select_folder_lineedit.setReadOnly(True)
 
         # TODO: add in method that open input dialogue box, filter to .csv to import
+        self.fileio_tab_select_folder_pushbutton.clicked.connect(fileio_tab_select_folder_pushbutton_clicked)
+
+
+        
         # TODO: add in method that check if the selected file is valid, such as no 
         #       empty file imported
 
@@ -81,8 +88,8 @@ class FiloIOTab(QWidget):
         self.fileio_tab_import_selected_table.setFixedHeight(200)
 
         # Add all import related widgets
-        self.fileio_tab_import_layout_grid.addWidget(self.fileio_tab_select_file_pushbutton, 0, 0)
-        self.fileio_tab_import_layout_grid.addWidget(self.fileio_tab_select_file_lineedit, 0, 1)
+        self.fileio_tab_import_layout_grid.addWidget(self.fileio_tab_select_folder_pushbutton, 0, 0)
+        self.fileio_tab_import_layout_grid.addWidget(self.fileio_tab_select_folder_lineedit, 0, 1)
         self.fileio_tab_import_layout_grid.addWidget(self.fileio_tab_import_selected_pushbutton, 1, 0)
         self.fileio_tab_import_layout_grid.addWidget(self.fileio_tab_import_selected_label, 1, 1)
         self.fileio_tab_import_layout_grid.addLayout(self.fileio_tab_import_configuration_layout, 2, 0, Qt.AlignVCenter)
