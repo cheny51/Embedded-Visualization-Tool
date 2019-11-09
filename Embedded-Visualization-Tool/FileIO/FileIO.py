@@ -95,6 +95,8 @@ class FiloIOTab(QWidget):
         self.setLayout(self.fileio_layout)
 
     def fileio_select_folder_widgets(self):
+        """Initialize the widgets for folder selection.
+        """
         # File select button
         self.fileio_tab_select_folder_pushbutton = QPushButton('Select Folder')
         self.fileio_tab_select_folder_pushbutton.\
@@ -128,6 +130,13 @@ class FiloIOTab(QWidget):
 
     @pyqtSlot(str)
     def folder_path_enable_import_file_widgets(self, message):
+        """This method is called when a folder is successfully
+        being imported. And this is where user is allowed to
+        load in and select the .csv from that folder
+
+        Args:
+            message (str): To check if folder selection is done correctly
+        """
         if message == "Folder selection is successful":
             print(message)
             self.fileio_tab_select_folder_lineedit.setText(self.folder_path)
@@ -136,12 +145,14 @@ class FiloIOTab(QWidget):
                 setText("Import Status: Unimported")
 
     def fileio_import_file_from_folder_widgets(self):
+        """This method initialize the import file from folder widgets
+        """
         # Import selected file push button
         self.fileio_tab_import_selected_pushbutton = \
             QPushButton('Import File in this folder')
         self.fileio_tab_import_selected_pushbutton.setFixedWidth(250)
         self.fileio_tab_import_selected_pushbutton.setEnabled(False)
-        
+
         self.file_from_folder_imported_state.\
             connect(self.file_import_enable_csv_file_selection)
 
@@ -172,6 +183,9 @@ class FiloIOTab(QWidget):
         # TODO: add in method that convert csv to a valid dataframe
 
     def fileio_import_files_from_selected_folder(self):
+        """This method opens and grab all the .csv files that are
+        found in the folder that user selected.
+        """
         self.fileio_tab_import_selected_table.\
             setModel(self.fileio_tab_import_selected_fileModel)
         # store the file path
@@ -181,6 +195,14 @@ class FiloIOTab(QWidget):
 
     @pyqtSlot(str)
     def file_import_enable_csv_file_selection(self, message):
+        """This method is called when files from the folder
+        were successfully displayed in the box. And now the
+        user is allowed to select the .csv file they wish to
+        analyze.
+
+        Args:
+            message (str): To check if file import is done correctly
+        """
         if message == "Successful file from folder import":
             print(message)
             folder_path = self.folder_path
@@ -191,6 +213,9 @@ class FiloIOTab(QWidget):
                 setText("Import Status: imported")
 
     def fileio_import_addwidget(self):
+        """This method adds all the widgets for the import parameter
+        section.
+        """
         self.fileio_tab_import_configuration_layout.\
             addWidget(self.fileio_tab_import_configuration_pushbutton)
         self.fileio_tab_import_configuration_layout.\
@@ -216,6 +241,9 @@ class FiloIOTab(QWidget):
         self.fileio_layout.addStretch(20)
 
     def fileio_export_addwidget(self):
+        """This section adds all widgets for the export parameter
+        section.
+        """
         # Add in all export related widgets
         self.fileio_tab_output_layout_grid.\
             addWidget(self.fileio_tab_export_checkbox, 0, 0)
