@@ -21,9 +21,23 @@ from PyQt5.QtCore import Qt, QDir, pyqtSignal, pyqtSlot
 
 class FiloIOTab(QWidget):
     '''This class houses all the set widgets used in the
-    fileio tab.
+    fileio tab. This class contains 4 attributes that are
+    event-driven type of attribute.
 
+    Attributes:
+        import_folder_path_selected_state (str): A string message that tells
+                                                 whether user selected a folder
+                                                 to read .csv from
+        file_from_folder_imported_state (str): A string message tells if user
+                                               had determined to import .csv
+                                               from the imported directory.
+        export_folder_path_selected_state (str): A string message tells if user
+                                                 had determined a output file
+                                                 directory to save graphs
+        save_figs (bool): A boolean tells other tabs if the figure needed to be
+                          saved offline.
     '''
+    # Class attributes
     import_folder_path_selected_state = pyqtSignal(str)
     file_from_folder_imported_state = pyqtSignal(str)
     export_folder_path_selected_state = pyqtSignal(str)
@@ -272,12 +286,20 @@ class FiloIOTab(QWidget):
         """
         if self.fileio_tab_export_checkbox.isChecked():
             if (self.fileio_tab_output_select_directory_lineedit.text() == ''):
-                print("Empty directory, cannot be saved offline")
+                self.fileio_export_file_checkbox_uncheck()
                 self.save_figs.emit(False)
             else:
                 self.save_figs.emit(True)
         else:
             self.save_figs.emit(False)
+
+    def fileio_export_file_checkbox_uncheck(self):
+        """This method is called to uncheck the save output checkbox
+        if user attempt to save output offline when the directory path
+        is not given appropriately
+        """
+        print("Empty directory, cannot be saved offline")
+        self.fileio_tab_export_checkbox.setCheckState(False)
 
     @pyqtSlot(bool)
     def save_fig_state(self, box_checked):
@@ -333,6 +355,3 @@ class FiloIOTab(QWidget):
         self.fileio_tab_output_layout_grid.\
             addWidget(self.fileio_tab_output_select_directory_lineedit, 1, 1)
         self.fileio_layout.addLayout(self.fileio_tab_output_layout_grid)
-
-        # TODO: add in connect method to add the
-        #       directory selected to the lineedit
