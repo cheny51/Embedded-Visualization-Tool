@@ -1,0 +1,7 @@
+Today:
+    1. Successfuly implement the get folder directory dialog
+    2. Successfuly output only the .csv file in that directory inputted
+    3. Successfully re-organize the class/method structure, more readable now for fileio.py
+
+Bug fixed:
+    1. When migrating the fileio.py structure, I accidentally deleted 3 widget lines. But now it's fixed
