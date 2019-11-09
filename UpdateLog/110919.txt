@@ -1,0 +1,9 @@
+Today:
+    1. Looked up whether is possible to include a progress bar for some of the future time-taking task
+       that is going to be done by this application, and then ends up reading about *QThread*. Which is 
+       going to be helpful to if I want to make sure my MainApplication won't crash if I decide to run
+       some heavy loaded looping task in my graph tab.
+    2. Moved the section of running the mainapplication class into main_gui.py, and moved it in a folder
+       called main_gui, so now my Run.py literally only has the statement if __name__ == __main__.
+    3. Still need to work on the fileiotab a little bit more, such as adding the events for configure file,
+       as well as grabbing the filename.
