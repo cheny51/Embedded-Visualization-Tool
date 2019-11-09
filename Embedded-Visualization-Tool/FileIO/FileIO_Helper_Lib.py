@@ -7,7 +7,7 @@ Created: 11/6/2019
 Author: Aiden Chen
 '''
 import sys
-from PyQt5.QtWidgets import QFileDialog, QLineEdit
+from PyQt5.QtWidgets import QFileDialog
 
 
 def fileio_tab_select_folder_pushbutton_clicked(self):
@@ -25,11 +25,11 @@ def fileio_import_files_from_folder_dialog(self):
     in that folder.
     '''
     # configure the input file dialog
-    folder_select_dialog_box = QFileDialog.Options()
-    folder_select_dialog_box |= QFileDialog.DontUseNativeDialog
-    dialog_box_title = 'Select Directory with .csv data files'
-    folder_path = QFileDialog.getExistingDirectory(self,
-                                                   dialog_box_title)
-    print(folder_path)
+    options = QFileDialog.Options()
+    options |= QFileDialog.DontUseNativeDialog
+    dialog_box_title = "Select Directory with .csv data files"
+    fileName, _ = QFileDialog.getOpenFileName(self, "Select Directory with .csv data files", "", "All Files (*);;Python Files (*.py)",
+                                              options=options)
+    print(fileName)
     # save the folder import path
     # self.fileio_tab_select_file_lineedit.setText(folder_path)
