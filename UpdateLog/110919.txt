@@ -7,3 +7,7 @@ Today:
        called main_gui, so now my Run.py literally only has the statement if __name__ == __main__.
     3. Still need to work on the fileiotab a little bit more, such as adding the events for configure file,
        as well as grabbing the filename.
+
+Spare Link:
+    1. https://stackoverflow.com/questions/53484241/get-selected-files-filenames-from-pyqt5-qlistview-in-python
+    2. https://riptutorial.com/pyqt5/example/29500/basic-pyqt-progress-bar
