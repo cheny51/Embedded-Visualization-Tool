@@ -88,6 +88,11 @@ class FiloIOTab(QWidget):
 
         # TODO: add in method to respond to checkbox state
         #       checked: output, enable line editor, unchecked: don't output
+        # Select directory to output to
+        self.fileio_tab_output_select_directory_pushbutton = QPushButton("Save Plot To Folder...")
+        self.fileio_tab_output_select_directory_pushbutton.setFixedWidth(250)
+        self.fileio_tab_output_select_directory_lineedit = QLineEdit('')
+        self.fileio_tab_output_select_directory_lineedit.setReadOnly(True)
 
         # Select directory to output to
         self.fileio_export_addwidget()
