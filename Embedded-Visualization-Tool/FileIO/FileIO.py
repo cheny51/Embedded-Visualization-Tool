@@ -20,6 +20,7 @@ from PyQt5.QtCore import Qt, QDir, pyqtSignal, pyqtSlot
 
 # local library import
 
+
 class FiloIOTab(QWidget):
     '''This class houses all the set widgets used in the
     fileio tab. This class contains 4 attributes that are
@@ -86,6 +87,23 @@ class FiloIOTab(QWidget):
         self.fileio_tab_import_config_label.setAlignment(Qt.AlignCenter)
         # Application adding the import parameter widgets onto the application
         self.fileio_import_addwidget()
+
+        # File properties
+        self.fileio_file_property_name_label = QLabel()
+        self.fileio_file_property_name_label.\
+            setText('File Name: ' + 'clear.dat')
+        # TODO: Add in method to grab file name with no ext
+        self.fileio_file_property_output_label = QLabel()
+        self.fileio_file_property_output_label.\
+            setText('Output Directory: ' + 'NA')
+        self.fileio_file_property_offline_save_label = QLabel()
+        self.fileio_file_property_offline_save_label.\
+            setText('Offline Saving: ' + 'NA')
+
+        self.fileio_layout.addWidget(self.fileio_file_property_name_label)
+        self.fileio_layout.addWidget(self.fileio_file_property_output_label)
+        self.fileio_layout.\
+            addWidget(self.fileio_file_property_offline_save_label)
 
         # Output Directory Parameters
         self.fileio_tab_export_title_label = QLabel()
@@ -319,9 +337,11 @@ class FiloIOTab(QWidget):
             box_checked (bool): To save or not save the figure
         """
         if box_checked:
-            print("Figure will be saved")
+            self.fileio_file_property_offline_save_label.\
+                setText("Offline Saving: " + "Figure will be saved")
         else:
-            print("Figure will not be saved")
+            self.fileio_file_property_offline_save_label.\
+                setText("Offline Saving: " + "Figure will not be saved")
 
     def fileio_import_addwidget(self):
         """This method adds all the widgets for the import parameter
