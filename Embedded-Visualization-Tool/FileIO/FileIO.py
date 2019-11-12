@@ -18,6 +18,7 @@ from PyQt5.QtWidgets import QFileDialog, QFileSystemModel, QListView
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, QDir, pyqtSignal, pyqtSlot
 
+# local library import
 
 class FiloIOTab(QWidget):
     '''This class houses all the set widgets used in the
@@ -174,7 +175,14 @@ class FiloIOTab(QWidget):
 
         # Import selected file tableview
         self.fileio_tab_import_selected_table = QListView()
-        self.fileio_tab_import_selected_table.setFixedHeight(200)
+        self.fileio_tab_import_selected_table.setFixedHeight(100)
+        self.fileio_tab_import_selected_table.\
+            setObjectName('fileio_tab_import_selected_table')
+
+        # When a user click on a cell from the folder
+        self.fileio_tab_import_selected_table.clicked.\
+            connect(self.select_an_csv_file_from_folder)
+
         self.fileio_tab_import_selected_pushbutton.\
             clicked.connect(self.fileio_import_files_from_selected_folder)
         self.fileio_tab_import_selected_fileModel = QFileSystemModel()
@@ -355,3 +363,8 @@ class FiloIOTab(QWidget):
         self.fileio_tab_output_layout_grid.\
             addWidget(self.fileio_tab_output_select_directory_lineedit, 1, 1)
         self.fileio_layout.addLayout(self.fileio_tab_output_layout_grid)
+
+    def select_an_csv_file_from_folder(self):
+        for each_csv_selected in self.fileio_tab_import_selected_table.selectedIndexes():
+            file_being_selected = self.fileio_tab_import_selected_fileModel.filePath(each_csv_selected)
+            print(file_being_selected)
