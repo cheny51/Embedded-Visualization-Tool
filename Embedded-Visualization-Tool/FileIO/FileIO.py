@@ -51,8 +51,6 @@ class FiloIOTab(QWidget):
         # Instance variables
         self.import_folder_path = QDir.rootPath()
         self.export_folder_path = QDir.rootPath()
-        # signal indicating if something has been successfuly
-        # or unsuccessfully operated
 
         # define outer sturcture of this tab
         self.fileio_layout = QVBoxLayout()

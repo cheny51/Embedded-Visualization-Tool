@@ -15,7 +15,7 @@ from PyQt5.QtCore import pyqtSlot
 
 # local file libraries
 from FileIO.FileIO import FiloIOTab
-
+from GraphAnalysis.GraphAnalysis import GraphAnalysisTab
 
 class TabbedGui(QWidget):
     '''This class is written to configure
@@ -28,7 +28,7 @@ class TabbedGui(QWidget):
         # Initialize tab screen
         self.tabbed_gui_widget = QTabWidget()
         self.file_io_tab = FiloIOTab()
-        self.graph_analysis_tab = QWidget()
+        self.graph_analysis_tab = GraphAnalysisTab()
         self.tabbed_gui_widget.resize(300, 200)
 
         # add tabs
